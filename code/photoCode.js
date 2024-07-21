@@ -5,6 +5,7 @@ let startNum, endNum;
 
 /*Additional event handling, in addition to just pressin the buttons*/
 function main(){
+    loadLocal();
     document.getElementById("imageElement").onclick = nextPhoto;
     document.getElementById("localStart").onchange = validateNums;
     document.getElementById("localEnd").onchange = validateNums;
@@ -57,7 +58,7 @@ function loadLocal(){
     i = Number(startNum);
     //Go through all numbers, append them to the end. After, reset i to 
     while (i <= endNum){
-        tmp = imgLoc.concat(i).concat(".jpg");
+        tmp = imgLoc.concat(" (" + i +")").concat(".jpg");
         images.push(tmp)
         i += 1;
     }

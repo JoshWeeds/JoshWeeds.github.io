@@ -10,7 +10,7 @@
 </head>
 
 <body onload="main()">
-    <h1>Photo Viewer</h1><br>
+    <h1>Boulder Throuple Trip</h1><br>
     <div class="flexContainer">
         <img src="InitialImage.jpg" alt="starting image" title="img" id="imageElement">
     </div>
@@ -24,18 +24,18 @@
 
         <fieldset>
             <legend>Loading Images &lpar;Local Folders&rpar;</legend>
-            <label>Photos' Folder: <input type="text" value="umcp/" name="folder" id="photoFolder"></label>
-            <label>Common Name: <input type="text" value="college" name="name" id="photoName"></label><br>
+            <label>Photos' Folder: <input type="text" value="Boulder/" name="folder" id="photoFolder"></label>
+            <label>Common Name: <input type="text" value="Boulder" name="name" id="photoName"></label><br>
             <label>Start Photo Number: <input type="number" name ="localStart" id="localStart" value="1"></label>
-            <label>End Photo Number: <input type = "number" name="localEnd" id="localEnd" value="6"></label><br>
+            <label>End Photo Number: <input type = "number" name="localEnd" id="localEnd" value="1352"></label><br>
             <input type="button" onclick="loadLocal()" name="loadPhotos" value="Load Photos">
         </fieldset>
 
-        <fieldset>
+        <!--<fieldset>
             <legend>Loading Images &lpar;JSON File&rpar;</legend>
             <label>URL: <input type="url" name="url" id="jsonload" value="https://www.cs.umd.edu/~nelson/classes/resources/cmsc335/images/imagesSet1.json"></label>
             <input type="button" onclick="loadJSON()" name="load url" value="Load JSON">
-        </fieldset>
+        </fieldset>-->
 
         <fieldset>
             <legend>Iterating</legend>
