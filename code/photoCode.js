@@ -58,7 +58,7 @@ function loadLocal(){
     i = Number(startNum);
     //Go through all numbers, append them to the end. After, reset i to 
     while (i <= endNum){
-        tmp = imgLoc.concat("%20(" + i +")").concat(".jpg");
+        tmp = imgLoc.concat("%20(" + i +")").concat(".JPG");
         images.push(tmp)
         i += 1;
     }
