@@ -54,7 +54,7 @@ function loadLocal(){
         return;
     }
 
-    let imgLoc = "https://github.com/JoshWeeds/JoshWeeds.github.io/tree/main/" + String(folder) + String(name);
+    let imgLoc = "https://github.com/JoshWeeds/JoshWeeds.github.io/blob/main/" + String(folder) + String(name);
     i = Number(startNum);
     //Go through all numbers, append them to the end. After, reset i to 
     while (i <= endNum){
