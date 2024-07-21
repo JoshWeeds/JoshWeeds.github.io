@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,4 +60,67 @@
 </body>
 
 
+=======
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Viewer</title>
+    <link rel="stylesheet" href="style.css" >
+    <script src="code/photoCode.js"></script>
+</head>
+
+<body onload="main()">
+    <h1>Boulder Throuple Trip</h1><br>
+    <div class="flexContainer">
+        <img src="InitialImage.jpg" alt="starting image" title="img" id="imageElement">
+    </div>
+
+    <form>
+        <fieldset disabled>
+            <legend>Status</legend>
+            <label>Photo Being Displayed: <input type="text" id="urlName" value="InitialImage.jpg"></label><br>
+            <div id="pvs"></div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Loading Images &lpar;Local Folders&rpar;</legend>
+            <label>Photos' Folder: <input type="text" value="Boulder/" name="folder" id="photoFolder"></label>
+            <label>Common Name: <input type="text" value="Boulder" name="name" id="photoName"></label><br>
+            <label>Start Photo Number: <input type="number" name ="localStart" id="localStart" value="1"></label>
+            <label>End Photo Number: <input type = "number" name="localEnd" id="localEnd" value="1352"></label><br>
+            <input type="button" onclick="loadLocal()" name="loadPhotos" value="Load Photos">
+        </fieldset>
+
+        <!--<fieldset>
+            <legend>Loading Images &lpar;JSON File&rpar;</legend>
+            <label>URL: <input type="url" name="url" id="jsonload" value="https://www.cs.umd.edu/~nelson/classes/resources/cmsc335/images/imagesSet1.json"></label>
+            <input type="button" onclick="loadJSON()" name="load url" value="Load JSON">
+        </fieldset>-->
+
+        <fieldset>
+            <legend>Iterating</legend>
+            <input type="button" onclick="prevPhoto()" name="Prev" value="Previous Photo">
+            <input type="button" onclick="nextPhoto()" name="Next" value="Next Photo">
+            <input type="button" onclick="firstPhoto()" name="First" value="First Photo">
+            <input type="button" onclick="lastPhoto()" name="Last" value="Last Photo">
+        </fieldset>
+
+        <fieldset>
+            <legend>SlideShows</legend>
+            <input type="button" onclick="beginAnimate()" name="slideshow" value="SlideShow">
+            <input type="button" onclick="randomAnimate()" name="randomSlideshow" value="RandomSlideShow">
+            <input type="button" onclick="stopAnimate()" name="stopSlideshow" value="StopSlideShow">
+        </fieldset>
+        <hr>
+    <input type="reset" value="Clear and Reset" id = "redo">
+    </form>
+
+
+</body>
+
+
+>>>>>>> 6fc6a9ebcd48d4b18c41aabc10cfc88d23771f93
 </html>
