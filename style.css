@@ -1,0 +1,68 @@
+html{
+    border: 1rem groove maroon;
+}
+
+body{
+    margin:1rem;
+    height:100%;
+    min-height: 50vh;
+}
+
+.flexContainer{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width:inherit;
+    height:inherit;
+    min-height: 500px;
+    margin-left:3rem;
+    margin-right:3rem;
+}
+
+h1{
+    display:block;
+}
+
+
+img{
+    height:500px;
+    object-fit:contain;
+    border: .5rem double black;
+    overflow:hidden;
+}
+
+legend{
+    font-weight: bold;
+}
+
+fieldset{
+    font-size: smaller;
+}
+
+fieldset > p{
+    color:red;
+    margin-top:5px;
+    margin-bottom:0px;
+}
+
+input[type=url]{
+    width: 75%;
+    text-wrap:nowrap;
+}
+
+input[type=button], input[type=reset]{
+    box-shadow: 3px 3px gray;
+}
+
+#pvs{
+    color:red;
+}
+
+#urlName{
+    width:60%;
+}
+
+h1{
+    color:red;
+    text-decoration: underline;
+}

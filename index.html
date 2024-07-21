@@ -1,64 +1,62 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Practice</title>
-    </head>
-    <body>
+<html lang="en">
 
-    <h1>Testing testing vun too tvee</h1>
-    <p>This is a very simple webpage, made only out of HTML at the moment. <br>
-        First actual implementation will be a bio page/section, again only in html.<br>
-        We will add CSS tags later to adjust font, text size, color, etc. This will be the "root" (homepage) of the site <br> <br>
-        Once we have a clean homepage, we will use JS to add interactables. <em>(Definately the hard part of this whole shabizzle)</em>    
-    </p>
-    <h3>Things to practice here</h3>
-    
-    <ol>
-        <li>General text stuff, ie bold, italicized, line breaks etc</li>
-        <li>Lists! Hey I'm doing that right now
-            <ul>
-                <li>Ordered Lists!</li>
-                <li>Unordered Lists! These are cool right?!</li>
-                <li>Might as well add nested lists to this while we're at it.</li>
-            </ul>
-        <li>Hyperlinks, we'll be testing that on my <a href="WIDENHOFER_JOSH RESUME.pdf">resume</a> (for now)</li>
-        <p><em>Note: Check if the link works on different devices</em></p>
-        <li>Adding pictures! Those are below, it's on github I'll have to manualy upload any media that I want to host. Embedded links are JS I believe</li>
-    </ol>
-        
-    <p>Rabbits are little creatures with long ears and puffy tails, and they move their nose up and down in an adorable way. They eat the most orange vegetables in our world, and they reproduce more than any human ever has. <br><br>
-    <strong><em>They haven't met me yet.</em></strong>
-    </p>
-    
-    <p><strong>Still Into You Chorus</strong> <--This should be bold</p>
-    
-    <p>I should be over all the butterflies <br>
-        (I'm into you, I'm into you) <br>
-        And baby even after all our worst nights <br>
-        I'm into you! (I'm into you) <br>
-        Let 'em wonder how we got this far <br>
-        But I don't need to wonder at all <br>
-        Yeah after all this time <br>
-        I'm still into you
-    </p>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Viewer</title>
+    <link rel="stylesheet" href="style.css" >
+    <script src="code/photoCode.js"></script>
+</head>
 
-    <p><em>Above should be <strong>line breaks    </strong> after each line of the song</em></p>
+<body onload="main()">
+    <h1>Boulder Throuple Trip</h1><br>
+    <div class="flexContainer">
+        <img src="InitialImage.jpg" alt="starting image" title="img" id="imageElement">
+    </div>
 
-    <h3>This concludes our monthly tornado warning the first wednesday of every month at 11:00AM!</h3>
-     <h1>Processing Reward...</h1>
-    <h2>Initiating Sequence...</h2>
-    <h3>Engagin Protocol...</h3>
-    <p>.....................<br>
-    .....................<br>
-        .....................<br>
-        .....................<br>
-    </p>
-    <h4>Success: Prizes Below!</h4>
-    <img src = "Meat on dem bones.jpg" alt = "A meme showing multiple used toilet paper rolls, and humerously saying 'Don't throw them away, there's still meat on them bones!'" width = "50%">
-    <img src = "not taylor!.jpg" alt = "Taylor showing her true colors" width = "50%">
-        <br>
-        <br>
-    <img src = "why.jpg" alt = "What the fuck" width = "50%">
-    </body>
+    <form>
+        <fieldset disabled>
+            <legend>Status</legend>
+            <label>Photo Being Displayed: <input type="text" id="urlName" value="InitialImage.jpg"></label><br>
+            <div id="pvs"></div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Loading Images &lpar;Local Folders&rpar;</legend>
+            <label>Photos' Folder: <input type="text" value="Boulder/" name="folder" id="photoFolder"></label>
+            <label>Common Name: <input type="text" value="Boulder" name="name" id="photoName"></label><br>
+            <label>Start Photo Number: <input type="number" name ="localStart" id="localStart" value="1"></label>
+            <label>End Photo Number: <input type = "number" name="localEnd" id="localEnd" value="1352"></label><br>
+            <input type="button" onclick="loadLocal()" name="loadPhotos" value="Load Photos">
+        </fieldset>
+
+        <!--<fieldset>
+            <legend>Loading Images &lpar;JSON File&rpar;</legend>
+            <label>URL: <input type="url" name="url" id="jsonload" value="https://www.cs.umd.edu/~nelson/classes/resources/cmsc335/images/imagesSet1.json"></label>
+            <input type="button" onclick="loadJSON()" name="load url" value="Load JSON">
+        </fieldset>-->
+
+        <fieldset>
+            <legend>Iterating</legend>
+            <input type="button" onclick="prevPhoto()" name="Prev" value="Previous Photo">
+            <input type="button" onclick="nextPhoto()" name="Next" value="Next Photo">
+            <input type="button" onclick="firstPhoto()" name="First" value="First Photo">
+            <input type="button" onclick="lastPhoto()" name="Last" value="Last Photo">
+        </fieldset>
+
+        <fieldset>
+            <legend>SlideShows</legend>
+            <input type="button" onclick="beginAnimate()" name="slideshow" value="SlideShow">
+            <input type="button" onclick="randomAnimate()" name="randomSlideshow" value="RandomSlideShow">
+            <input type="button" onclick="stopAnimate()" name="stopSlideshow" value="StopSlideShow">
+        </fieldset>
+        <hr>
+    <input type="reset" value="Clear and Reset" id = "redo">
+    </form>
+
+
+</body>
+
+
 </html>
