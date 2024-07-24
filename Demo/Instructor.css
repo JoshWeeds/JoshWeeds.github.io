@@ -1,0 +1,110 @@
+html{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size:14px;
+    padding: 3rem;
+    background-color: rgb(0, 87, 128);
+    margin:1rem;
+    border:2px solid black;
+    height: fit-content;
+    width: fit-content;    
+}
+
+
+
+
+
+body {
+    background-color: lightblue;
+    border: .33rem dashed navy;
+    width: inherit;
+    height: inherit;
+    padding:4rem;
+    margin: 0%;
+    background-image: url(spurslogo2.png);
+    background-size:100% 100%;
+    background-blend-mode: color-burn;
+    overflow:auto;
+    display:grid;
+    grid-template-areas:
+    "h1 middle h3"
+    "p middle table1"
+    "iframe middle table2";
+    grid-template-columns: 1.8fr 2fr 1.8fr;
+    grid-template-rows: .8fr 2fr 1fr;
+}
+
+h3{
+    grid-area:h3;
+    font-size:2rem;
+    margin:0;
+    font-family:Arbutus;
+}
+/*Using h5 to "block out" the middle of the table (where the spurs logo is)*/
+h5{
+    grid-area: middle;
+    width:30%;
+}
+
+h6{
+    font-style: italic;
+    font-size: large;
+    margin:0;
+}
+.stopAtHalf{
+    width:80%;
+}
+
+.invisible{
+    visibility: hidden;
+}
+
+.bigText{
+    grid-area:h1;
+    font-size: 1.5rem;
+}
+#pleft{
+    grid-area:p;
+}
+table, td, th{
+    text-align: left;
+    border: .1rem solid black;
+    grid-area: table2;
+}
+
+table{
+    margin-top: 1rem;
+}
+caption{
+    font-weight: bold;
+}
+
+.botLeft{
+    grid-area:iframe;
+    font-size:.8rem;
+}
+
+.midRight{
+    grid-area:table1;
+}
+
+#lefth3{
+    text-align: left;
+}
+
+#righth3{
+    text-align: right;
+}
+
+#midh3{
+    text-align:center
+}
+
+br{
+    display:block;
+    content:"";
+    margin-top:1px;
+}
+
+.border{
+    border:2px solid navy
+}

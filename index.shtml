@@ -13,10 +13,17 @@
     <h1>Joshy's Home Page</h1><br>
 
     <form action="BoulderPhotos/index.html" method="post">
-        <input type="submit" value="See some pics from Boulder!">
+        <p>To see some pics of Boulder, click below</p>
+        <input type="submit">
     </form>
-
-
+    <br>
+    <form action="Demo/Instructor.html" method="post">
+        <p>To check out a demo page I made for class, click below</p>
+        <input type ="submit">
+    </form>
+    <div id="footerDiv">
+        <h1>Come on You Spurs!</h1>
+    </div>
 </body>
 
 </html>
