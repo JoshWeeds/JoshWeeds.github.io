@@ -1,4 +1,4 @@
-let animationId, interval = 1000;
+let animationId, interval = 5000;
 let images = [];
 let i = 0;
 let startNum, endNum;
