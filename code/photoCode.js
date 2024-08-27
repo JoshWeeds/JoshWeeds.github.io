@@ -1,4 +1,4 @@
-let animationId, interval = 1000;
+let animationId, interval = 5000;
 let images = [];
 let i = 0;
 let startNum, endNum;
@@ -15,7 +15,7 @@ function main(){
         document.querySelector("#urlName").value = "InitialImage.jpg";
         document.querySelector("#pvs").innerHTML = '';
         images = [];
-        i = 0;
+        i = Math.floor(Math.random() * images.length);
     };
 }
 
