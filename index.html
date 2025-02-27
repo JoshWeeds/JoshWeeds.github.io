@@ -1,29 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boulder</title>
-    <link rel="stylesheet" href="style.css" >
-    <script src="code/photoCode.js"></script>
+    <title>Responsive Page with Table of Contents</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
-<body onload="main()">
-    <h1>Joshy's Home Page</h1><br>
-
-    <form action="BoulderPhotos/index.html" method="get">
-        <p>To see some pics of Boulder, click below</p>
-        <input type="submit">
-    </form>
-    <br>
-    <form action="Demo/Instructor.html" method="get">
-        <p>To check out a demo page I made for class, click below</p>
-        <input type ="submit">
-    </form>
-    <div id="footerDiv">
-        <h1>Come on You Spurs!</h1>
+<body>
+    <div class="container">
+        <div class="toc">
+            <h2>Table of Contents</h2>
+            <ul>
+                <li><a href="#section1">Section 1</a></li>
+                <li><a href="#section2">Section 2</a></li>
+                <li><a href="#section3">Section 3</a></li>
+                <li><a href="#section4">Section 4</a></li>
+                <li><a href="#section5">Section 5</a></li>
+            </ul>
+        </div>
+        
+        <div class="content">
+            <div id="section1" class="section">
+                <h2>To see some pics of Boulder, click below</h2>
+                <form action="../BoulderPhotos/index.html" method="get">
+                    <input type="submit">
+                </form>
+            </div>
+            
+            <div id="section2" class="section">
+                <h2>To check out a demo page I made for class, click below</h2>
+                <form action="../Demo/Instructor.html" method="get">
+                    <input type ="submit">
+                </form>
+            </div>
+            
+            <div id="section3" class="section">
+                <h2>Section 3</h2>
+                <p><a href = "https://www.substack.com/@joshweeds">Does this substack link work? </a></p>
+            
+            </div>
+            <!--
+            <div id="section4" class="section">
+                <h2>Section 4</h2>
+                <p>This is the content for section 4. Replace this with your actual content.</p>
+            </div>
+            
+            <div id="section5" class="section">
+                <h2>Section 5</h2>
+                <p>This is the content for section 5. Replace this with your actual content.</p>
+            </div>
+            -->
+        </div>
     </div>
 </body>
-
 </html>
