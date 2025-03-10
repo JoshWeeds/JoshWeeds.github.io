@@ -6,18 +6,6 @@ import PyPDF2
 from io import BytesIO
 from urllib.parse import urlparse
 
-
-if __name__ == '__main__':
-    # Example usage
-    url = input("Enter the URL of the article: ")
-    try:
-        article_data = scrape_article(url)
-        save_to_json(article_data)
-        print("Article saved successfully!")
-    except Exception as e:
-        print(f"An error occurred: {e}")
-
-
 def scrape_article(url):
     # Fetch the webpage
     response = requests.get(url)
@@ -46,9 +34,9 @@ def scrape_article(url):
     body = body.get_text(separator='\n').strip() if body else 'No body found'
 
     return {
-        'headline': headline,
-        'author': author,
-        'body': body,
+        'headline': headline.replace("\t", "").replace("\n", ""),
+        'author': author.replace("\t", "").replace("\n", ""),
+        'body': body.replace("\t", "").replace("\n", ""),
         'url': url
     }
 
@@ -87,3 +75,17 @@ def save_to_json(data, filename='articles.json'):
     # Save the updated data
     with open(filename, 'w') as f:
         json.dump(existing_data, f, indent=4)
+
+if __name__ == '__main__':
+    # Example usage
+    while(True):
+        try:
+            url = input("Enter the URL of the article: ")
+            if url == "" or url == " ":
+                print("Finished saving articles!")
+                break
+            article_data = scrape_article(url)
+            save_to_json(article_data)
+            print("Article saved successfully!")
+        except Exception as e:
+            print(f"An error occurred: {e}")
