@@ -33,6 +33,8 @@ def scrape_article(url):
            soup.find('div', class_=re.compile('content|article|body', re.I))
     body = body.get_text(separator='\n').strip() if body else 'No body found'
 
+    print ( body.replace("\t", "").replace("\n", "") )
+
     return {
         'headline': headline.replace("\t", "").replace("\n", ""),
         'author': author.replace("\t", "").replace("\n", ""),
@@ -53,7 +55,8 @@ def scrape_pdf(url):
     text = ''
     for page in reader.pages:
         text += page.extract_text()
-
+    
+    print (text)
     return {
         'headline': urlparse(url).path.split('/')[-1],  # Use the filename as the headline
         'author': 'No author found',  # PDFs often don't have author metadata
