@@ -1,0 +1,385 @@
+/* DnD DM Tool — dark theme stylesheet
+   Loaded after ../style.css (which provides the nav bar styles).
+   The overrides at the top undo the landing page's viewport-lock. */
+
+/* ============================================================
+   ROOT OVERRIDES
+   The main style.css sets overflow:hidden and height:100vh on
+   body so the landing page never scrolls. The DM tool is a
+   multi-panel app that needs to scroll freely, so we undo that.
+   ============================================================ */
+:root {
+  --dnd-bg:         #12121e;
+  --dnd-surface:    #1c1c2e;
+  --dnd-border:     #2a2a42;
+  --dnd-blue:       #4a6fa5;
+  --dnd-blue-light: #6a8fc5;
+  --dnd-text:       #dde0f0;
+  --dnd-muted:      #7a7a9a;
+}
+
+body {
+  background: var(--dnd-bg);
+  color:      var(--dnd-text);
+  height:     auto;
+  min-height: 100vh;
+  overflow:   auto;
+}
+
+/* nav-brand is a <span> on the landing page but an <a> here */
+.nav-brand {
+  text-decoration: none;
+  color: #fff;
+}
+
+/* ============================================================
+   APP SHELL
+   ============================================================ */
+#app {
+  max-width: 1100px;
+  margin:    0 auto;
+  padding:   2rem 1.5rem 4rem;
+}
+
+/* ============================================================
+   VIEW MANAGEMENT
+   ============================================================ */
+.view        { display: block; }
+.hidden      { display: none !important; }
+
+.view-title {
+  font-size:     2rem;
+  text-align:    center;
+  margin-bottom: 2rem;
+  color:         var(--dnd-text);
+}
+
+.view-header {
+  display:        flex;
+  align-items:    center;
+  gap:            1rem;
+  margin-bottom:  1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom:  1px solid var(--dnd-border);
+}
+
+.view-header h2 { font-size: 1.3rem; }
+
+/* ============================================================
+   PANELS  — the card containers used throughout the tool
+   ============================================================ */
+.panel {
+  background:    var(--dnd-surface);
+  border:        1px solid var(--dnd-border);
+  border-radius: 8px;
+  padding:       1.25rem;
+  display:       flex;
+  flex-direction: column;
+  gap:           0.7rem;
+}
+
+.panel h3 {
+  font-size:      0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color:          var(--dnd-blue-light);
+  margin-bottom:  0.1rem;
+}
+
+/* ============================================================
+   HOME MENU
+   ============================================================ */
+.home-menu {
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  gap:            0.65rem;
+  max-width:      360px;
+  margin:         0 auto;
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.menu-btn {
+  width:         100%;
+  padding:       0.7rem 1.25rem;
+  background:    var(--dnd-surface);
+  border:        1px solid var(--dnd-border);
+  border-radius: 6px;
+  color:         var(--dnd-text);
+  font-size:     0.95rem;
+  cursor:        pointer;
+  text-align:    left;
+  transition:    background 0.15s, border-color 0.15s;
+}
+
+.menu-btn:hover:not(:disabled) {
+  background:    var(--dnd-border);
+  border-color:  var(--dnd-blue);
+}
+
+.menu-btn.primary {
+  background:  var(--dnd-blue);
+  border-color: var(--dnd-blue);
+  color:        #fff;
+  text-align:   center;
+}
+
+.menu-btn.primary:hover:not(:disabled) {
+  background: var(--dnd-blue-light);
+}
+
+.menu-btn:disabled {
+  opacity: 0.35;
+  cursor:  not-allowed;
+}
+
+.btn-ghost {
+  background:    transparent;
+  border:        none;
+  color:         var(--dnd-muted);
+  cursor:        pointer;
+  font-size:     0.9rem;
+  padding:       0.25rem 0.5rem;
+  border-radius: 4px;
+  transition:    color 0.15s;
+}
+.btn-ghost:hover { color: var(--dnd-text); }
+.btn-ghost.small  { font-size: 0.8rem; }
+
+.btn-accent {
+  background:    var(--dnd-blue);
+  color:         #fff;
+  border:        none;
+  padding:       0.45rem 1rem;
+  border-radius: 5px;
+  cursor:        pointer;
+  font-size:     0.9rem;
+  white-space:   nowrap;
+  transition:    background 0.15s;
+}
+.btn-accent:hover { background: var(--dnd-blue-light); }
+
+/* ============================================================
+   SESSION VIEW — three-panel grid
+   ============================================================ */
+.session-body {
+  display:     grid;
+  grid-template-columns: 190px 1fr 1fr;
+  gap:         1rem;
+  align-items: start;
+}
+
+/* ============================================================
+   SELECTORS
+   ============================================================ */
+.selector-panel label {
+  font-size: 0.78rem;
+  color:     var(--dnd-muted);
+}
+
+select {
+  width:         100%;
+  background:    var(--dnd-bg);
+  color:         var(--dnd-text);
+  border:        1px solid var(--dnd-border);
+  border-radius: 5px;
+  padding:       0.4rem 0.5rem;
+  font-size:     0.88rem;
+}
+
+select:focus { outline: none; border-color: var(--dnd-blue); }
+
+/* ============================================================
+   DIE BUTTONS
+   ============================================================ */
+.die-buttons {
+  display:   flex;
+  flex-wrap: wrap;
+  gap:       0.4rem;
+}
+
+.die-btn {
+  flex:          1;
+  min-width:     38px;
+  padding:       0.4rem 0;
+  background:    var(--dnd-bg);
+  border:        1px solid var(--dnd-border);
+  border-radius: 5px;
+  color:         var(--dnd-muted);
+  font-size:     0.82rem;
+  cursor:        pointer;
+  transition:    all 0.15s;
+  text-align:    center;
+}
+
+.die-btn:hover            { border-color: var(--dnd-blue); color: var(--dnd-text); }
+.die-btn.selected         { background: var(--dnd-blue); border-color: var(--dnd-blue); color: #fff; font-weight: 600; }
+
+/* ============================================================
+   ROLL INPUT
+   ============================================================ */
+.roll-input-row {
+  display: flex;
+  gap:     0.5rem;
+}
+
+input[type="number"] {
+  flex:          1;
+  background:    var(--dnd-bg);
+  color:         var(--dnd-text);
+  border:        1px solid var(--dnd-border);
+  border-radius: 5px;
+  padding:       0.5rem;
+  font-size:     1.4rem;
+  text-align:    center;
+  /* Hide the browser's spinner arrows — not useful here */
+  -moz-appearance: textfield;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+input[type="number"]:focus { outline: none; border-color: var(--dnd-blue); }
+
+.last-roll {
+  font-size:  0.82rem;
+  text-align: center;
+  min-height: 1.2em;
+}
+
+/* ============================================================
+   STATS PANEL
+   ============================================================ */
+.stats-header {
+  display:         flex;
+  justify-content: space-between;
+  align-items:     center;
+}
+
+.filter-toggle { display: flex; gap: 0.25rem; }
+
+.toggle-btn {
+  background:    transparent;
+  border:        1px solid var(--dnd-border);
+  color:         var(--dnd-muted);
+  padding:       0.2rem 0.6rem;
+  border-radius: 4px;
+  font-size:     0.75rem;
+  cursor:        pointer;
+  transition:    all 0.15s;
+}
+
+.toggle-btn.active {
+  background:    var(--dnd-blue);
+  border-color:  var(--dnd-blue);
+  color:         #fff;
+}
+
+/* Canvas scales to panel width; pixel dimensions set in HTML attrs */
+canvas {
+  width:   100%;
+  height:  auto;
+  display: block;
+}
+
+/* ============================================================
+   UTILITY
+   ============================================================ */
+.muted  { color: var(--dnd-muted); }
+.small  { font-size: 0.82rem; }
+
+/* ============================================================
+   FORMS
+   ============================================================ */
+.form-panel {
+  display:        flex;
+  flex-direction: column;
+  gap:            0.75rem;
+  max-width:      400px;
+}
+
+.form-panel label    { font-size: 0.8rem; color: var(--dnd-muted); }
+.form-panel input    { font-size: 0.95rem; }
+.hint                { font-size: 0.78rem; color: var(--dnd-muted); }
+
+.inline-form {
+  display: flex;
+  gap:     0.5rem;
+}
+
+.inline-form.col { flex-direction: column; }
+
+.inline-form input,
+.inline-form select {
+  background:    var(--dnd-bg);
+  color:         var(--dnd-text);
+  border:        1px solid var(--dnd-border);
+  border-radius: 5px;
+  padding:       0.4rem 0.5rem;
+  font-size:     0.88rem;
+  flex:          1;
+}
+
+.inline-form input:focus,
+.inline-form select:focus { outline: none; border-color: var(--dnd-blue); }
+
+/* ============================================================
+   ITEM LISTS  — used in load, overview, roster views
+   ============================================================ */
+.item-list {
+  list-style: none;
+  display:    flex;
+  flex-direction: column;
+  gap:        0.35rem;
+  max-height: 340px;
+  overflow-y: auto;
+}
+
+.item-list li {
+  padding:       0.4rem 0.6rem;
+  background:    var(--dnd-bg);
+  border:        1px solid var(--dnd-border);
+  border-radius: 5px;
+  font-size:     0.88rem;
+}
+
+/* Session rows in the Load view are fully clickable buttons */
+.session-load-btn {
+  width:       100%;
+  background:  transparent;
+  border:      none;
+  color:       var(--dnd-text);
+  text-align:  left;
+  cursor:      pointer;
+  font-size:   0.9rem;
+  padding:     0;
+}
+.session-load-btn:hover { color: var(--dnd-blue-light); }
+
+.session-date-tag {
+  color:       var(--dnd-muted);
+  font-size:   0.78rem;
+  margin-left: 0.5rem;
+}
+
+/* ============================================================
+   OVERVIEW + ROSTER  — two-column grid
+   ============================================================ */
+.overview-body,
+.roster-body {
+  display:     grid;
+  grid-template-columns: 1fr 1fr;
+  gap:         1rem;
+  align-items: start;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 780px) {
+  .session-body,
+  .overview-body,
+  .roster-body {
+    grid-template-columns: 1fr;
+  }
+}

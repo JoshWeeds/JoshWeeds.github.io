@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DM Tool — Josh Widenhofer</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Shared site nav. "Projects" marked active since this is a project page. -->
+    <nav class="navbar">
+        <a class="nav-brand" href="../index.html">Josh Widenhofer</a>
+        <ul class="nav-links">
+            <li><a href="../index.html">About Josh</a></li>
+            <li><a href="#" class="active">Projects</a></li>
+        </ul>
+    </nav>
+
+    <div id="app">
+
+        <!-- ================================================================
+             HOME VIEW
+             Main menu. "Continue" is disabled until at least one session exists.
+             ================================================================ -->
+        <div id="view-home" class="view">
+            <h1 class="view-title">DM Dashboard</h1>
+            <div class="home-menu">
+                <button id="btn-continue" class="menu-btn primary" disabled>No Sessions Yet</button>
+                <button id="btn-new-session" class="menu-btn">+ New Session</button>
+                <button id="btn-load-session" class="menu-btn">Load Session</button>
+                <button id="btn-overview" class="menu-btn">Campaign Overview</button>
+                <button id="btn-roster" class="menu-btn">Manage Roster</button>
+            </div>
+        </div>
+
+        <!-- ================================================================
+             NEW SESSION VIEW
+             DM enters an arc name. Session numbers are assigned automatically.
+             A <datalist> provides autocomplete for previously used arc names.
+             ================================================================ -->
+        <div id="view-new-session" class="view hidden">
+            <div class="view-header">
+                <button class="btn-back-home btn-ghost">← Back</button>
+                <h2>New Session</h2>
+            </div>
+            <form id="new-session-form" class="form-panel">
+                <label for="arc-name-input">Arc Name</label>
+                <input id="arc-name-input" type="text" list="arc-suggestions"
+                       placeholder="e.g. Throat Cave" autocomplete="off" required>
+                <datalist id="arc-suggestions"></datalist>
+                <p class="hint">Arc and session numbers are assigned automatically based on history.</p>
+                <button type="submit" class="menu-btn primary">Begin Session</button>
+            </form>
+        </div>
+
+        <!-- ================================================================
+             SESSION VIEW
+             Three-panel layout:
+               Left  — who is rolling (player + character selectors)
+               Center — roll input (die buttons, number box, confirm)
+               Right  — live stats chart for the selected die
+             ================================================================ -->
+        <div id="view-session" class="view hidden">
+            <div class="view-header">
+                <button class="btn-back-home btn-ghost">← Home</button>
+                <div>
+                    <h2 id="session-title"></h2>
+                    <span id="session-date" class="muted small"></span>
+                </div>
+            </div>
+
+            <div class="session-body">
+
+                <!-- Left: selector panel -->
+                <div class="selector-panel panel">
+                    <h3>Who's Rolling</h3>
+                    <label for="select-player">Player</label>
+                    <select id="select-player"></select>
+                    <label for="select-character">Character</label>
+                    <select id="select-character"></select>
+                    <button id="btn-prev-player" class="btn-ghost small">↩ Previous</button>
+                </div>
+
+                <!-- Center: roll input panel -->
+                <div class="roll-panel panel">
+                    <h3>Roll</h3>
+                    <div class="die-buttons">
+                        <button class="die-btn" id="die-btn-4">d4</button>
+                        <button class="die-btn" id="die-btn-6">d6</button>
+                        <button class="die-btn" id="die-btn-8">d8</button>
+                        <button class="die-btn" id="die-btn-10">d10</button>
+                        <button class="die-btn" id="die-btn-12">d12</button>
+                        <button class="die-btn selected" id="die-btn-20">d20</button>
+                    </div>
+                    <div class="roll-input-row">
+                        <input type="number" id="roll-value" min="1" max="20" placeholder="—">
+                        <button id="btn-random" class="btn-accent">Roll</button>
+                    </div>
+                    <button id="btn-confirm-roll" class="menu-btn primary">Confirm Roll</button>
+                    <div id="last-roll-display" class="last-roll muted"></div>
+                </div>
+
+                <!-- Right: stats panel -->
+                <div class="stats-panel panel">
+                    <div class="stats-header">
+                        <h3>Stats — d<span id="stats-die-label">20</span></h3>
+                        <div class="filter-toggle">
+                            <button id="stats-filter-session" class="toggle-btn active">Session</button>
+                            <button id="stats-filter-character" class="toggle-btn">Character</button>
+                        </div>
+                    </div>
+                    <canvas id="stats-chart" width="320" height="180"></canvas>
+                    <div id="stats-summary" class="muted small"></div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ================================================================
+             LOAD SESSION VIEW
+             Lists all sessions newest-first. Each row is a clickable button
+             that opens that session directly.
+             ================================================================ -->
+        <div id="view-load" class="view hidden">
+            <div class="view-header">
+                <button class="btn-back-home btn-ghost">← Back</button>
+                <h2>Load Session</h2>
+            </div>
+            <ul id="session-list" class="item-list"></ul>
+        </div>
+
+        <!-- ================================================================
+             OVERVIEW VIEW
+             Check any combination of sessions, pick a die size, and hit
+             "View Selected" to see aggregated stats across those sessions.
+             ================================================================ -->
+        <div id="view-overview" class="view hidden">
+            <div class="view-header">
+                <button class="btn-back-home btn-ghost">← Back</button>
+                <h2>Campaign Overview</h2>
+            </div>
+            <div class="overview-body">
+
+                <div class="panel">
+                    <h3>Select Sessions to Compare</h3>
+                    <ul id="overview-session-list" class="item-list"></ul>
+                    <h3 style="margin-top: 0.5rem;">Die Size</h3>
+                    <div class="die-buttons">
+                        <button class="die-btn overview-die-btn" id="overview-die-btn-4">d4</button>
+                        <button class="die-btn overview-die-btn" id="overview-die-btn-6">d6</button>
+                        <button class="die-btn overview-die-btn" id="overview-die-btn-8">d8</button>
+                        <button class="die-btn overview-die-btn" id="overview-die-btn-10">d10</button>
+                        <button class="die-btn overview-die-btn" id="overview-die-btn-12">d12</button>
+                        <button class="die-btn overview-die-btn selected" id="overview-die-btn-20">d20</button>
+                    </div>
+                    <button id="btn-view-selected" class="menu-btn primary">View Selected</button>
+                </div>
+
+                <div id="overview-stats-panel" class="panel hidden">
+                    <h3>Aggregated — d<span id="overview-die-label">20</span></h3>
+                    <canvas id="overview-chart" width="320" height="180"></canvas>
+                    <div id="overview-stats-summary" class="muted small"></div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ================================================================
+             ROSTER VIEW
+             Two sub-panels: add a real-name Player, or add a Character linked
+             to an existing player. Lists refresh after every addition.
+             ================================================================ -->
+        <div id="view-roster" class="view hidden">
+            <div class="view-header">
+                <button class="btn-back-home btn-ghost">← Back</button>
+                <h2>Manage Roster</h2>
+            </div>
+            <div class="roster-body">
+
+                <div class="panel">
+                    <h3>Players</h3>
+                    <form id="add-player-form" class="inline-form">
+                        <input id="new-player-name" type="text" placeholder="Real name">
+                        <button type="submit" class="btn-accent">Add</button>
+                    </form>
+                    <ul id="roster-player-list" class="item-list"></ul>
+                </div>
+
+                <div class="panel">
+                    <h3>Characters</h3>
+                    <form id="add-char-form" class="inline-form col">
+                        <input id="new-char-name" type="text" placeholder="Character name">
+                        <select id="roster-char-player"></select>
+                        <button type="submit" class="btn-accent">Add</button>
+                    </form>
+                    <ul id="roster-char-list" class="item-list"></ul>
+                </div>
+
+            </div>
+        </div>
+
+    </div><!-- #app -->
+
+    <script src="dnd.js"></script>
+</body>
+</html>
